@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
+    <title>Skills Test</title>
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            color: white;
+            background-image: url(https://i.pinimg.com/1200x/60/89/08/6089082cecce0f84dd31e887ed23336d.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .shop-card, #receipt {
+            background-color: rgba(81, 137, 183, 0.95);
+            border: 1px solid rgb(247, 236, 215);
+            border-radius: 25px;
+            width: 800px;
+            padding: 45px;
+            margin: 20px auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateX(6px);
+        }
+
+        .menu-item input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            height: 22px;
+            width: 22px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgb(247, 236, 215);
+            border-radius: 6px;
+            margin-right: 14px;
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .checkmark::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid rgb(81, 137, 183);
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg) scale(0);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Checked Animations */
+        .menu-item input:checked ~ .checkmark {
+            background-color: rgb(247, 236, 215);
+            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .menu-item input:checked ~ .checkmark::after {
+            display: block;
+            transform: rotate(45deg) scale(1);
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+
+        button {
+            background-color: rgb(247, 236, 215);
+            color: rgb(81, 137, 183);
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .h1-color {
+        background-image: linear-gradient(45deg, #b3ddfe, #f5e9d2);
+    }
+    </style>
+</head>
+<body>
+    <div class="shop-card">
+        <form>
+            <h1 class="h1-color">OBMC Entrep Fair - Summer Limited Edition Drinks</h1>
+            <h2>Menu:</h2>
+
+            <label class="menu-item">
+                <input type="checkbox" id="c1">
+                <span class="checkmark"></span>
+                Americano (₱130.00)
+            </label>
+
+            <label class="menu-item">
+                <input type="checkbox" id="c2">
+                <span class="checkmark"></span>
+                Spanish Latte (₱150.00)
+            </label>
+
+            <label class="menu-item">
+                <input type="checkbox" id="c3">
+                <span class="checkmark"></span>
+                Cold Brew Malt (₱155.00)
+            </label>
+
+            <label class="menu-item">
+                <input type="checkbox" id="c4">
+                <span class="checkmark"></span>
+                Affogato (₱140.00)
+            </label>
+
+            <label class="menu-item">
+                <input type="checkbox" id="c5">
+                <span class="checkmark"></span>
+                Caramel Macchiato (₱165.00)
+            </label>
+
+            <button type="button" py-click="create_order">Create Order</button>
+        </form>
+    </div>
+
+    <div id="receipt">
+        <h2>==== Receipt ====</h2>
+    </div>
+
+    <script type="py" src="main.py" config='{"packages": []}'></script>
+</body>
+</html>
